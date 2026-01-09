@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기후 변화 인포그래피</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; }
+        .gradient-card { background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%); }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-5xl font-black text-slate-800 mb-4">지구가 보내는 적정 신호 🌡️</h1>
+            <p class="text-lg text-slate-600">2020 - 2024 온실가스 및 기온 변화 분석</p>
+            <div class="w-24 h-1 bg-red-500 mx-auto mt-4 rounded-full"></div>
+        </header>
+
+        <!-- Main Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- CO2 Stat -->
+            <div class="gradient-card p-6 rounded-3xl shadow-sm border border-slate-100 text-center">
+                <span class="text-sm font-bold text-slate-500 uppercase tracking-widest">이산화탄소 (CO₂)</span>
+                <div class="text-4xl font-black text-blue-600 my-2">428.0 <span class="text-lg">ppm</span></div>
+                <p class="text-sm text-slate-600">2020년 대비 <span class="text-red-500 font-bold">2.49% ↑</span></p>
+            </div>
+            <!-- CH4 Stat -->
+            <div class="gradient-card p-6 rounded-3xl shadow-sm border border-slate-100 text-center">
+                <span class="text-sm font-bold text-slate-500 uppercase tracking-widest">메탄 (CH₄)</span>
+                <div class="text-4xl font-black text-emerald-600 my-2">2,022 <span class="text-lg">ppb</span></div>
+                <p class="text-sm text-slate-600">2020년 대비 <span class="text-red-500 font-bold">2.53% ↑</span></p>
+            </div>
+            <!-- Temp Stat -->
+            <div class="gradient-card p-6 rounded-3xl shadow-sm border border-slate-100 text-center">
+                <span class="text-sm font-bold text-slate-500 uppercase tracking-widest">평균 기온</span>
+                <div class="text-4xl font-black text-red-600 my-2">14.7 <span class="text-lg">°C</span></div>
+                <p class="text-sm text-slate-600">5년 중 최고 기온 기록</p>
+            </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="bg-white p-6 md:p-10 rounded-3xl shadow-lg border border-slate-100 mb-8">
+            <h2 class="text-xl font-bold text-slate-800 mb-6 flex items-center">
+                <span class="mr-2">📊</span> 연도별 지표 변화 추이
+            </h2>
+            <div class="relative h-80 w-full">
+                <canvas id="climateChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Insight & Alert Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-red-50 p-6 rounded-3xl border border-red-100">
+                <h3 class="font-bold text-red-800 mb-2 flex items-center text-lg">
+                    <span class="mr-2">⚠️</span> 기온 상승의 특이점
+                </h3>
+                <p class="text-red-700 leading-relaxed">
+                    2022년(13.6°C)에서 2023년(14.6°C) 사이, 단 1년 만에 <b>1.0°C가 급격히 상승</b>했습니다. 이는 기후 임계점에 가까워지고 있다는 강력한 경고입니다.
+                </p>
+            </div>
+            <div class="bg-slate-800 p-6 rounded-3xl text-white">
+                <h3 class="font-bold mb-2 flex items-center text-lg text-emerald-400">
+                    <span class="mr-2">🌱</span> 우리가 할 수 있는 일
+                </h3>
+                <ul class="text-sm space-y-2 text-slate-300">
+                    <li>• 에너지 효율이 높은 가전제품 사용하기</li>
+                    <li>• 불필요한 일회용품 줄이고 재활용하기</li>
+                    <li>• 가까운 거리는 걷거나 자전거 이용하기</li>
+                    <li>• 실내 적정 온도 유지하기</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer class="mt-12 text-center text-slate-400 text-xs pb-10">
+            데이터 출처: 온난화.csv 관측치 기반 분석 보고서
+        </footer>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('climateChart').getContext('2d');
+        const data = {
+            labels: ['2020', '2021', '2022', '2023', '2024'],
+            datasets: [
+                {
+                    label: '평균 기온 (°C)',
+                    data: [13.4, 13.5, 13.6, 14.6, 14.7],
+                    borderColor: '#ef4444',
+                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                    yAxisID: 'yTemp',
+                    borderWidth: 4,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#ef4444',
+                    tension: 0.3,
+                    fill: true
+                },
+                {
+                    label: '이산화탄소 (ppm)',
+                    data: [417.6, 421.4, 422.8, 425.6, 428.0],
+                    borderColor: '#2563eb',
+                    yAxisID: 'yCO2',
+                    borderWidth: 2,
+                    borderDash: [5, 5],
+                    pointRadius: 4,
+                    tension: 0.1
+                }
+            ]
+        };
+
+        new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                scales: {
+                    yTemp: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: { display: true, text: '기온 (°C)' },
+                        suggestedMin: 13,
+                        suggestedMax: 15
+                    },
+                    yCO2: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: { display: true, text: 'CO₂ (ppm)' },
+                        grid: { drawOnChartArea: false },
+                        suggestedMin: 410,
+                        suggestedMax: 435
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { usePointStyle: true, padding: 20 }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
