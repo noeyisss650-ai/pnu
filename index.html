@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박시연 | 빅데이터 분석 포트폴리오</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap');
+        body { font-family: 'Pretendard', sans-serif; scroll-behavior: smooth; }
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+        .gradient-text { background: linear-gradient(to right, #2563eb, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .project-card:hover { transform: translateY(-10px); }
+    </style>
+</head>
+<body class="bg-[#f8fafc] text-slate-900">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-6 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-xl font-black tracking-tighter text-blue-900 uppercase">SIYEON PARK.</div>
+            <div class="hidden md:flex gap-8 text-sm font-bold text-slate-600 uppercase tracking-widest">
+                <a href="#projects" class="hover:text-blue-600 transition-colors">Projects</a>
+                <a href="#about" class="hover:text-blue-600 transition-colors">Skills</a>
+                <a href="mailto:contact@example.com" class="text-blue-600 font-black">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-40 pb-24 overflow-hidden bg-white">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-blue-50/50 -skew-x-12 translate-x-1/4 z-0"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="max-w-3xl" data-aos="fade-up" data-aos-duration="1000">
+                <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-bold tracking-widest text-blue-600 uppercase bg-blue-50 border border-blue-100 rounded-lg">
+                    ✨ Big Data Analyst Course Completed
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight leading-[1.1]">
+                    데이터로 <span class="gradient-text">세상의 흐름</span>을 <br>읽고 증명합니다.
+                </h1>
+                <p class="text-lg md:text-xl text-slate-500 mb-10 leading-relaxed max-w-xl">
+                    박시연입니다. 빅데이터 분석 교과목을 통해 쌓은 기술적 역량과 조별 협업 경험을 한곳에 모았습니다. 통계 분석과 머신러닝을 활용한 5가지 핵심 프로젝트를 확인해보세요.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects" class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-lg shadow-blue-200 flex items-center gap-2">
+                        분석 프로젝트 보기
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor font-black"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-6 py-24">
+        
+        <!-- Main Core Project Section (#04) -->
+        <section id="projects" class="mb-32">
+            <div class="mb-16" data-aos="fade-right">
+                <h2 class="text-3xl font-black mb-4 flex items-center gap-3">
+                    <div class="w-10 h-1 bg-blue-600 rounded-full"></div> Core Individual Project
+                </h2>
+                <p class="text-slate-500 text-lg font-medium">데이터 모델링 역량을 보여주는 박시연의 대표 프로젝트입니다.</p>
+            </div>
+
+            <div class="group relative bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-blue-50 overflow-hidden hover:border-blue-200 transition-all" data-aos="zoom-in">
+                <div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
+                    <div>
+                        <span class="px-4 py-1.5 bg-blue-600 text-white text-xs font-black rounded-full uppercase tracking-tighter">PROJECT #04</span>
+                        <h3 class="text-3xl md:text-4xl font-black mt-6 mb-6 leading-tight">
+                            대학별 경영학과 <br>신입생 경쟁률 분석
+                        </h3>
+                        <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                            전국 주요 대학 경영학과의 최근 5개년 신입생 모집 데이터를 활용하여 입시 트렌드와 경쟁률 변동 요인을 예측했습니다.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-10">
+                            <span class="px-4 py-2 bg-blue-50 text-blue-700 text-sm font-bold rounded-xl border border-blue-100">Scikit-learn</span>
+                            <span class="px-4 py-2 bg-blue-50 text-blue-700 text-sm font-bold rounded-xl border border-blue-100">Big Data</span>
+                            <span class="px-4 py-2 bg-blue-50 text-blue-700 text-sm font-bold rounded-xl border border-blue-100">Visual Analysis</span>
+                        </div>
+                        <a href="04.html" class="inline-flex items-center gap-3 px-8 py-4 bg-slate-900 hover:bg-blue-600 text-white rounded-2xl font-bold transition-all group/btn">
+                            상세 결과 보고서
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                    <div class="bg-slate-50 rounded-3xl p-6 border border-slate-100 shadow-inner">
+                        <div class="aspect-video bg-white rounded-xl shadow-sm overflow-hidden flex flex-col p-6 border border-slate-100">
+                            <div class="flex-grow flex items-end gap-3">
+                                <div class="flex-grow bg-blue-100 h-[40%] rounded-t-lg"></div>
+                                <div class="flex-grow bg-blue-200 h-[60%] rounded-t-lg"></div>
+                                <div class="flex-grow bg-blue-600 h-[90%] rounded-t-lg shadow-lg"></div>
+                                <div class="flex-grow bg-blue-300 h-[70%] rounded-t-lg"></div>
+                                <div class="flex-grow bg-blue-100 h-[50%] rounded-t-lg"></div>
+                            </div>
+                            <div class="mt-4 text-center text-[10px] font-bold text-slate-400 uppercase tracking-widest">Competition Rate Trend Analysis</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analysis Case Studies Grid (#01~#03) -->
+        <section class="mb-32">
+            <div class="mb-12" data-aos="fade-right">
+                <h2 class="text-2xl font-black mb-2 tracking-tight">Analysis Case Studies</h2>
+                <p class="text-slate-500 font-medium">데이터 전처리와 기초 통계 분석을 수행한 사례 연구입니다.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Project 01 -->
+                <a href="01.html" class="project-card group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm transition-all" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                    </div>
+                    <span class="text-[10px] font-black text-blue-500 uppercase tracking-widest">Social Issue</span>
+                    <h4 class="text-xl font-black mt-2 mb-4 group-hover:text-blue-700 transition-colors">킥보드 교통사고 요인 분석</h4>
+                    <p class="text-slate-500 text-sm mb-6 leading-relaxed">개인형 이동장치(PM) 이용 급증에 따른 사고 데이터 기반 위험 구역 및 발생 패턴 분석</p>
+                    <div class="flex items-center gap-2 text-sm font-black text-slate-300 group-hover:text-blue-600 transition-colors">
+                        VIEW PROJECT <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </div>
+                </a>
+
+                <!-- Project 02 -->
+                <a href="02.html" class="project-card group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm transition-all" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <span class="text-[10px] font-black text-blue-500 uppercase tracking-widest">Environment</span>
+                    <h4 class="text-xl font-black mt-2 mb-4 group-hover:text-blue-700 transition-colors">지구 온난화 데이터 시각화</h4>
+                    <p class="text-slate-500 text-sm mb-6 leading-relaxed">연도별 전 지구 기온 변화 및 탄소 배출량 상관관계 심층 시각화 분석</p>
+                    <div class="flex items-center gap-2 text-sm font-black text-slate-300 group-hover:text-blue-600 transition-colors">
+                        VIEW PROJECT <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </div>
+                </a>
+
+                <!-- Project 03 -->
+                <a href="03.html" class="project-card group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm transition-all" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </div>
+                    <span class="text-[10px] font-black text-blue-500 uppercase tracking-widest">Education</span>
+                    <h4 class="text-xl font-black mt-2 mb-4 group-hover:text-blue-700 transition-colors">대학별 1인당 교육비 상관성</h4>
+                    <p class="text-slate-500 text-sm mb-6 leading-relaxed">대학별 재정 투입량과 교육 지표 간의 상관분석 및 효율성 분석</p>
+                    <div class="flex items-center gap-2 text-sm font-black text-slate-300 group-hover:text-blue-600 transition-colors">
+                        VIEW PROJECT <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Team Project Section (#05) -->
+        <section class="mb-32">
+            <div class="mb-12 text-center" data-aos="fade-up">
+                <h2 class="text-3xl font-black mb-2">Team Collaboration</h2>
+                <p class="text-slate-500 font-medium">조별 과제를 통해 수행한 종합 데이터 분석 및 NLP 프로젝트입니다.</p>
+            </div>
+            <div class="max-w-4xl mx-auto" data-aos="zoom-in-up">
+                <a href="05.html" class="group flex flex-col md:flex-row items-center gap-8 bg-[#0f172a] p-8 md:p-12 rounded-[3rem] text-white hover:bg-blue-900 transition-all duration-500 shadow-2xl">
+                    <div class="w-24 h-24 bg-white/10 rounded-3xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-3 mb-4 text-center md:text-left">
+                            <span class="px-3 py-1 bg-blue-500 text-[10px] font-black rounded-lg">GROUP PROJECT</span>
+                            <span class="text-slate-400 text-xs font-bold uppercase tracking-widest">NLP & Statistics</span>
+                        </div>
+                        <h3 class="text-2xl font-black mb-4">연령대별 사망원인 및 AI윤리 유튜브 분석</h3>
+                        <p class="text-slate-400 mb-6 leading-relaxed">
+                            통계청 데이터 기반 연령별 사망 원인 분석과 유튜브 댓글 감성 분석을 통한 AI 윤리 인식 조사
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-blue-300 font-bold text-xs uppercase">
+                            <span>#NLP</span> <span>#WordCloud</span> <span>#Social_Data</span>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-blue-900 transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-100 pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <h2 class="text-3xl font-black mb-4 tracking-tighter">Let's connect.</h2>
+                <p class="text-slate-500 mb-8 max-w-md font-medium">
+                    빅데이터 분석을 통해 실질적인 인사이트를 도출하는 과정이 즐겁습니다. 함께 소통하며 성장하고 싶습니다.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="p-3 bg-slate-50 rounded-xl hover:bg-blue-50 text-slate-400 hover:text-blue-600 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="#" class="p-3 bg-slate-50 rounded-xl hover:bg-blue-50 text-slate-400 hover:text-blue-600 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="bg-blue-600 rounded-[2.5rem] p-10 text-white text-center shadow-2xl shadow-blue-200" data-aos="fade-left">
+                <p class="text-blue-100 mb-2 font-bold uppercase tracking-widest text-xs">Ready to analyze</p>
+                <h3 class="text-2xl font-black mb-6 leading-tight">성장을 멈추지 않는 분석가 <br>박시연입니다.</h3>
+                <button class="w-full py-4 bg-white text-blue-600 rounded-2xl font-black hover:bg-blue-50 transition-colors shadow-lg">
+                    RESUME DOWNLOAD
+                </button>
+            </div>
+        </div>
+        <div class="mt-20 pt-8 border-t border-slate-50 text-center text-slate-400 text-xs">
+            © 2024 SIYEON PARK. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <script>
+        // AOS Animation Initialize
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-out-cubic'
+        });
+
+        // Navbar Scroll Effect
+        window.onscroll = function() {
+            const nav = document.getElementById('navbar');
+            if (window.pageYOffset > 50) {
+                nav.classList.add('glass-nav', 'shadow-sm', 'py-3');
+                nav.classList.remove('py-6');
+            } else {
+                nav.classList.remove('glass-nav', 'shadow-sm', 'py-3');
+                nav.classList.add('py-6');
+            }
+        };
+    </script>
+</body>
+</html>
