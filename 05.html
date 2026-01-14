@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>분석 보고서 | 케이팝 데몬 헌터스</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS Library for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap');
+        
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e293b;
+        }
+
+        body { 
+            font-family: 'Pretendard', sans-serif; 
+            scroll-behavior: smooth; 
+            background-color: #f8fafc; 
+        }
+
+        .report-card { 
+            background: white; 
+            border-radius: 1.5rem; 
+            box-shadow: 0 4px 20px -5px rgba(0,0,0,0.05); 
+            transition: transform 0.3s ease;
+        }
+
+        .gradient-header {
+            background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
+        }
+
+        .nav-glass { 
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8); 
+        }
+
+        /* Custom Word Cloud Tags */
+        .word-tag {
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+        .word-tag:hover {
+            transform: scale(1.15) rotate(2deg);
+            color: var(--primary);
+        }
+
+        /* Smooth tab highlight */
+        .active-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            margin: 0 auto;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <!-- Navigation (Vanilla JS Controlled) -->
+    <nav id="main-nav" class="fixed top-0 w-full z-50 nav-glass py-4 px-6 transition-all duration-300">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <a href="portfolio.html" class="group flex items-center gap-2 text-blue-600 font-bold transition-all">
+                    <div class="p-2 rounded-xl group-hover:bg-blue-50">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                    </div>
+                    <span class="hidden sm:inline">Portfolio Home</span>
+                </a>
+                <div class="h-4 w-[1px] bg-slate-200"></div>
+                <span class="text-xs font-black text-slate-400 tracking-widest uppercase">Report #05</span>
+            </div>
+            <div class="text-[10px] font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full uppercase tracking-widest">
+                Student Analyst: Siyeon Park
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="pt-40 pb-24 px-6 gradient-header text-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/></pattern></defs>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+        </div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-blue-200 text-xs font-black mb-8 uppercase tracking-widest" data-aos="fade-down">
+                <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+                YouTube Sentiment Analysis Report
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black mb-8 leading-[1.15] tracking-tight" data-aos="fade-up">
+                '케이팝 데몬 헌터스'의 <br>성공 요인 및 핵심 담론 분석
+            </h1>
+            <div class="flex justify-center items-center gap-6 text-blue-100/60 text-sm font-bold" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center gap-2">
+                    <span class="bg-blue-500 w-6 h-6 rounded-full flex items-center justify-center text-[10px] text-white">DJ</span>
+                    동주여자고등학교 박시연
+                </div>
+                <div class="w-1 h-1 bg-white/30 rounded-full"></div>
+                <div>2024. 05. 22</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content Navigator -->
+    <main class="max-w-5xl mx-auto px-6 -mt-12 pb-32">
+        
+        <!-- 01. Intro Card -->
+        <section id="section-1" class="report-card p-10 md:p-14 mb-10 relative z-20" data-aos="fade-up">
+            <div class="flex items-start gap-6">
+                <div class="hidden sm:flex w-12 h-12 bg-blue-600 rounded-2xl items-center justify-center text-white font-black shrink-0 shadow-lg shadow-blue-200">01</div>
+                <div>
+                    <h2 class="text-2xl font-black mb-6 text-slate-900">연구 배경 및 서론</h2>
+                    <p class="text-slate-600 leading-relaxed text-lg mb-6">
+                        '케이팝 데몬 헌터스'의 흥행은 K-콘텐츠가 이제 단순 소비 대상을 넘어 <strong>글로벌 창작의 원천(Source)</strong>으로 자리 잡았음을 상징합니다. 
+                    </p>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="text-blue-600 font-bold block mb-1">분석 대상</span>
+                            <p class="text-xs text-slate-500 leading-normal">유튜브 댓글 데이터 및 국내외 주요 언론 보도 지표</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="text-blue-600 font-bold block mb-1">연구 목표</span>
+                            <p class="text-xs text-slate-500 leading-normal">글로벌 성공의 정성적 요인 파악 및 산업적 시사점 도출</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. Performance Indicators -->
+        <section id="section-2" class="mb-20">
+            <div class="flex flex-col items-center mb-10" data-aos="fade-up">
+                <span class="text-blue-600 font-black text-xs uppercase tracking-[0.3em] mb-2">Metrics</span>
+                <h2 class="text-3xl font-black text-slate-900 tracking-tight">글로벌 시장 성과 지표</h2>
+            </div>
+            
+            <div class="grid sm:grid-cols-3 gap-6">
+                <!-- Stat 1 -->
+                <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 group hover:border-blue-500 transition-colors" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                    </div>
+                    <div class="text-4xl font-black text-slate-900 mb-1">41<span class="text-sm font-bold text-slate-400 ml-1 uppercase">Countries</span></div>
+                    <p class="text-sm font-bold text-slate-600 uppercase tracking-tighter">Netflix Top 1 Record</p>
+                </div>
+                <!-- Stat 2 -->
+                <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 group hover:border-blue-500 transition-colors" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+                    </div>
+                    <div class="text-4xl font-black text-slate-900 mb-1">No.1</div>
+                    <p class="text-sm font-bold text-slate-600 uppercase tracking-tighter">Billboard Global 200</p>
+                </div>
+                <!-- Stat 3 -->
+                <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 group hover:border-blue-500 transition-colors" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-7.714 2.143L11 21l-2.286-6.857L1 12l7.714-2.143L11 3z"/></svg>
+                    </div>
+                    <div class="text-4xl font-black text-slate-900 mb-1">Oscar</div>
+                    <p class="text-sm font-bold text-slate-600 uppercase tracking-tighter">Predicted Nominations</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. Core Drivers -->
+        <section id="section-3" class="mb-20">
+            <div class="bg-[#0f172a] rounded-[3rem] p-10 md:p-16 text-white overflow-hidden relative" data-aos="fade-up">
+                <div class="absolute bottom-0 right-0 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
+                
+                <h2 class="text-3xl font-black mb-12">성공의 핵심 동력: 전통의 재해석</h2>
+                
+                <div class="grid md:grid-cols-2 gap-12 relative z-10">
+                    <div class="space-y-8">
+                        <div class="flex gap-4">
+                            <span class="text-blue-400 font-black text-xl">01</span>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">민화적 캐릭터 (호작도)</h4>
+                                <p class="text-slate-400 text-sm">까치와 호랑이의 상징성을 현대적인 애니메이션 캐릭터로 완벽히 변주했습니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <span class="text-blue-400 font-black text-xl">02</span>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">전통 복식의 무대화</h4>
+                                <p class="text-slate-400 text-sm">갓과 도포를 단순 소품이 아닌 역동적인 퍼포먼스의 핵심 요소로 활용했습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-8">
+                        <div class="flex gap-4">
+                            <span class="text-blue-400 font-black text-xl">03</span>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">한국적 생활 디테일</h4>
+                                <p class="text-slate-400 text-sm">수저 밑 휴지, 편의점 음식 등 일상적인 '한국성'이 글로벌 팬들에게 신선하게 다가갔습니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <span class="text-blue-400 font-black text-xl">04</span>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">K팝 시스템의 이해</h4>
+                                <p class="text-slate-400 text-sm">음악 방송, 연습생 문화 등 실제 K팝 산업의 메커니즘을 사실적으로 묘사했습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. YouTube Sentiment Data -->
+        <section id="section-4" class="mb-20">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl font-black text-slate-900 mb-4">데이터 분석 결과</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto">유튜브 댓글 1,500건을 기반으로 추출된 핵심 키워드와 대중 담론의 지형도입니다.</p>
+            </div>
+
+            <!-- Custom Word Cloud Wrapper -->
+            <div class="bg-white rounded-[2.5rem] p-12 border border-slate-100 shadow-sm mb-10 text-center" data-aos="zoom-in">
+                <div id="word-cloud" class="flex flex-wrap justify-center items-center gap-x-10 gap-y-6 max-w-3xl mx-auto py-10">
+                    <!-- JavaScript will populate or we can keep it static for SEO/Vanilla feel -->
+                    <span class="word-tag text-6xl font-black text-blue-600">한국</span>
+                    <span class="word-tag text-4xl font-black text-slate-800">문화</span>
+                    <span class="word-tag text-3xl font-bold text-blue-400">자부심</span>
+                    <span class="word-tag text-3xl font-bold text-red-500 uppercase tracking-tighter">수익</span>
+                    <span class="word-tag text-2xl font-bold text-slate-700 uppercase">Sony</span>
+                    <span class="word-tag text-2xl font-bold text-slate-400">자본</span>
+                    <span class="word-tag text-2xl font-bold text-slate-800">대한민국</span>
+                    <span class="word-tag text-xl font-bold text-blue-500">소프트파워</span>
+                    <span class="word-tag text-lg font-medium text-red-400">국뽕경계</span>
+                    <span class="word-tag text-lg font-medium text-slate-400">중국공정</span>
+                    <span class="word-tag text-sm font-medium text-slate-300">삼성</span>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Theme 1 -->
+                <div class="bg-blue-50/50 p-8 rounded-[2rem] border border-blue-100" data-aos="fade-right">
+                    <h3 class="text-xl font-black text-blue-700 mb-6 flex items-center gap-3">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xs">A</div>
+                        긍정: 문화적 자존감 고취
+                    </h3>
+                    <div class="space-y-4">
+                        <blockquote class="bg-white p-5 rounded-2xl text-sm italic text-slate-600 leading-relaxed shadow-sm">
+                            "김구 선생님의 문화강국 염원이 실현되고 있네요. 한국인으로서 전율을 느낍니다."
+                        </blockquote>
+                        <blockquote class="bg-white p-5 rounded-2xl text-sm italic text-slate-600 leading-relaxed shadow-sm">
+                            "이런게 진짜 소프트파워죠. 억만금을 줘도 못 만드는 가치입니다."
+                        </blockquote>
+                    </div>
+                </div>
+                <!-- Theme 2 -->
+                <div class="bg-red-50/50 p-8 rounded-[2rem] border border-red-100" data-aos="fade-left">
+                    <h3 class="text-xl font-black text-red-700 mb-6 flex items-center gap-3">
+                        <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center text-white text-xs">B</div>
+                        비판: 경제적 수익의 불균형
+                    </h3>
+                    <div class="space-y-4">
+                        <blockquote class="bg-white p-5 rounded-2xl text-sm italic text-slate-600 leading-relaxed shadow-sm">
+                            "기분은 좋지만 실속은 소니와 넷플릭스가 다 챙기는 구조가 아쉽습니다."
+                        </blockquote>
+                        <blockquote class="bg-white p-5 rounded-2xl text-sm italic text-slate-600 leading-relaxed shadow-sm">
+                            "우리가 뛰어난 IP를 가지고도 하청기지에 머무르지 않으려면 자본 주권이 필요해요."
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05. Insights & Conclusion -->
+        <section id="section-5" class="report-card p-10 md:p-16 mb-20 overflow-hidden relative" data-aos="fade-up">
+            <div class="absolute top-0 right-0 w-1/2 h-full bg-slate-50 -skew-x-12 translate-x-1/4 pointer-events-none"></div>
+            
+            <div class="relative z-10">
+                <h2 class="text-3xl font-black mb-10 text-slate-900">결론 및 제언</h2>
+                
+                <div class="space-y-12">
+                    <div class="flex gap-8 group">
+                        <div class="shrink-0">
+                            <div class="w-14 h-14 bg-white border-2 border-slate-900 rounded-2xl flex items-center justify-center text-xl font-black group-hover:bg-slate-900 group-hover:text-white transition-all">1</div>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-3 tracking-tight">외부 창작자의 객관적 재창조</h4>
+                            <p class="text-slate-500 leading-relaxed">한국계 제작진 등 '외부자'의 시각이 오히려 한국 문화의 특징을 더 명확하게 발굴하여 세계화에 기여할 수 있음을 입증했습니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-8 group">
+                        <div class="shrink-0">
+                            <div class="w-14 h-14 bg-white border-2 border-slate-900 rounded-2xl flex items-center justify-center text-xl font-black group-hover:bg-slate-900 group-hover:text-white transition-all">2</div>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-3 tracking-tight">가치 사슬 내 주도권 확보</h4>
+                            <p class="text-slate-500 leading-relaxed">콘텐츠 강국을 넘어 경제적 실익을 확보하기 위해 글로벌 유통 및 투자 플랫폼의 경쟁력 강화가 필수적입니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Action -->
+        <div class="text-center" data-aos="zoom-in">
+            <p class="text-slate-400 font-bold text-xs uppercase tracking-widest mb-6">End of Report</p>
+            <a href="portfolio.html" class="inline-flex items-center gap-3 px-12 py-5 bg-slate-900 text-white rounded-[2rem] font-black hover:bg-blue-600 transition-all shadow-2xl hover:scale-105 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                포트폴리오 메인으로 이동
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white py-16 border-t border-slate-100">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <div class="flex justify-center items-center gap-4 mb-8">
+                <div class="w-10 h-[1px] bg-slate-200"></div>
+                <div class="text-[10px] font-black text-slate-300 uppercase tracking-[0.4em]">Siyeon Park Analysis</div>
+                <div class="w-10 h-[1px] bg-slate-200"></div>
+            </div>
+            <p class="text-slate-400 text-sm max-w-lg mx-auto leading-relaxed">
+                본 문서는 동주여자고등학교 박시연 학생의 개인 프로젝트 아카이브입니다. 
+                모든 분석 내용은 공공 데이터 및 소셜 리스닝 데이터를 바탕으로 구성되었습니다.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Vanilla Javascript -->
+    <script>
+        // 1. Initialize AOS (Animation on Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-out-quint',
+            offset: 100
+        });
+
+        // 2. Navigation Scroll Effect
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('py-2', 'shadow-sm');
+                nav.classList.remove('py-4');
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                nav.classList.remove('py-2', 'shadow-sm');
+                nav.classList.add('py-4');
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+            }
+        });
+
+        // 3. Simple Interaction for Word Cloud (Vanilla JS)
+        const wordTags = document.querySelectorAll('.word-tag');
+        wordTags.forEach(tag => {
+            tag.addEventListener('mouseenter', () => {
+                // You can add logic here for extra info or effects
+                tag.style.transition = "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+            });
+            
+            tag.addEventListener('click', () => {
+                console.log(`Keyword selected: ${tag.innerText}`);
+                // Simple vibration/click feel
+                tag.style.transform = "scale(0.9)";
+                setTimeout(() => tag.style.transform = "scale(1.15)", 100);
+            });
+        });
+
+        // 4. Smooth Anchor Scrolling Logic (Native JS)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Log page load completion
+        window.addEventListener('load', () => {
+            console.log("Analysis Report Loaded - Analyst Siyeon Park");
+        });
+    </script>
+</body>
+</html>
